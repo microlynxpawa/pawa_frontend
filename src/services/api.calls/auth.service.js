@@ -1,9 +1,11 @@
 import http from "../httpService";
 
-const authEndpoint = "/auth";
+const apiPrefix = "/auth";
 
 export function login(user) {
-  return http.post(authEndpoint + "/login", user);
+  return http.post(apiPrefix + "/login", user, {
+    headers: {},
+  });
 }
 
 export default currentUser;
