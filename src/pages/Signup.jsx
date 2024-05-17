@@ -86,7 +86,7 @@ class Signup extends Form {
                         "text",
                         "firstName",
                         "Enter your first name",
-                        "First Name"
+                        "First Name *"
                       )}
 
                       {this.renderInput(
@@ -100,35 +100,35 @@ class Signup extends Form {
                         "text",
                         "lastName",
                         "Enter your last name",
-                        "Last Name"
+                        "Last Name *"
                       )}
 
                       {this.renderInput(
                         "text",
                         "emailAddress",
                         "Enter your email address",
-                        "Email Address"
+                        "Email Address *"
                       )}
 
                       {this.renderPhoneInput(
                         "text",
                         "mobileNumber",
                         "Enter your phone number",
-                        "Phone Number"
+                        "Phone Number *"
                       )}
 
                       <div class="row g-2">
                         {this.renderSelect(
                           "typeOfID",
                           this.state.idTypes,
-                          "Select ID Type"
+                          "Select ID Type *"
                         )}
                         <div class="mb-3 col-md-7">
                           {this.renderInput(
                             "text",
                             "idNumber",
                             "Enter ID Number",
-                            "ID Number"
+                            "ID Number *"
                           )}
                         </div>
                       </div>
