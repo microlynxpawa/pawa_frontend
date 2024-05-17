@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Joi from "joi-browser";
 
+import Form from "../components/Forms/Form";
 import Background from "../assets/images/bg-pattern-light.svg";
 import Logo from "../assets/images/Pawa-logo-removebg.png";
 
 import "../stylesheets/app.modern.min.css";
 import "../stylesheets/icons.min.css";
-import Form from "../components/Forms/Form";
 
 class Signup extends Form {
   state = {
@@ -38,8 +38,12 @@ class Signup extends Form {
   toggleCheck = () => this.setState({ isChecked: !this.state.isChecked });
 
   doSubmit = async () => {
-    console.log(this.state.isChecked);
-    console.log("DATA ", this.state.data);
+    if (this.state.isChecked) {
+      console.log(this.state.isChecked);
+      console.log("DATA ", this.state.data);
+    } else {
+      alert("Agree to the Terms and Conditions to proceed.");
+    }
   };
 
   render() {
@@ -129,8 +133,22 @@ class Signup extends Form {
                         </div>
                       </div>
 
-                      <div class="mb-3">{this.renderCheckbox()}</div>
-
+                      <div class="mb-3">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            defaultChecked={this.state.isChecked}
+                            onChange={this.toggleCheck}
+                          />
+                          <label class="form-check-label" for="checkbox-signup">
+                            I accept{" "}
+                            <a href="#" class="text-muted">
+                              Terms and Conditions
+                            </a>
+                          </label>
+                        </div>
+                      </div>
                       <div class="mb-3 text-center">
                         {this.renderButton("Sign Up")}
                       </div>
