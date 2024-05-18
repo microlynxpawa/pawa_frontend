@@ -1,9 +1,13 @@
 import React from "react";
 import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import NotFound from "./pages/NotFound";
+import VerificationCode from "./pages/VerificationCode";
+import { Routes, Route, Navigate } from "react-router-dom";
 
+import "./stylesheets/style.css";
+import "react-phone-input-2/lib/style.css";
 import "react-phone-number-input/style.css";
 
 function App() {
@@ -11,6 +15,8 @@ function App() {
     <React.Fragment>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/validate" element={<VerificationCode />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/notfound" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/notfound" />} />

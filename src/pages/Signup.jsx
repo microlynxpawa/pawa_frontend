@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Joi from "joi-browser";
+import { Link } from "react-router-dom";
+import PhoneInput from "react-phone-input-2";
+import { toast } from "react-toastify";
 
 import Form from "../components/Forms/Form";
 import Background from "../assets/images/bg-pattern-light.svg";
 import Logo from "../assets/images/Pawa-logo-removebg.png";
+import { signup } from "../services/api.calls/auth.service";
 
 import "../stylesheets/app.modern.min.css";
 import "../stylesheets/icons.min.css";
@@ -19,6 +22,8 @@ class Signup extends Form {
       typeOfID: "",
       idNumber: "",
     },
+    phone: "",
+    loading: false,
     isChecked: false,
     idTypes: ["Type Of ID", "National ID", "Driver License", "passport"],
     error: {},
@@ -38,16 +43,28 @@ class Signup extends Form {
   toggleCheck = () => this.setState({ isChecked: !this.state.isChecked });
 
   doSubmit = async () => {
+    const userData = { ...this.state.data, mobilePhone: this.state.phone };
     if (this.state.isChecked) {
-      console.log(this.state.isChecked);
-      console.log("DATA ", this.state.data);
+      try {
+        this.setState({ loading: true });
+        const { data } = await signup(userData);
+        window.location = "/validate";
+      } catch (error) {
+        if (error.response && error.response.data && error.response.data.detail)
+          toast.error(error.response.data.detail);
+        else toast.error(error.response.data.message);
+      } finally {
+        this.setState({ loading: false });
+      }
     } else {
-      alert("Agree to the Terms and Conditions to proceed.");
+      toast.error("Agree to the Terms and Conditions to proceed.");
     }
   };
 
   render() {
-    return (
+    return this.state.loading ? (
+      <h1 className="appLoader mySpinner">LOADING.....</h1>
+    ) : (
       <React.Fragment>
         <div
           class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5"
@@ -110,12 +127,19 @@ class Signup extends Form {
                         "Email Address *"
                       )}
 
-                      {this.renderPhoneInput(
-                        "text",
-                        "mobileNumber",
-                        "Enter your phone number",
-                        "Phone Number *"
-                      )}
+                      <div class="mb-3">
+                        <label for="" class="form-label">
+                          Phone Number *
+                        </label>
+                        <PhoneInput
+                          className="number"
+                          country={localStorage.getItem("isocode") ?? "gh"}
+                          value={this.state.phone}
+                          onChange={(phone) => this.setState({ phone })}
+                          placeholder="Enter your phone number"
+                          required
+                        />
+                      </div>
 
                       <div class="row g-2">
                         {this.renderSelect(
