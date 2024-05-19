@@ -20,3 +20,49 @@
 
   margin: auto;
 }
+
+.otpbody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* height: 100vh; */
+}
+
+.otp-value {
+  color: red;
+}
+
+.otp-bx {
+  display: flex;
+}
+.otp-bx input {
+  width: 50px;
+  font-size: 32px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 2px;
+  border: 2px solid #9d9d9d;
+  background: #fff;
+  font-weight: bold;
+  outline: none;
+  transition: all 0.1s;
+}
+.otp-bx input:focus {
+  border: 2px solid #0769ab;
+  box-shadow: 0 0 1px 1px #0769ab;
+}
+
+.pointer_cursor {
+  cursor: pointer;
+}
+
+.app_color {
+  color: #526de5;
+}
+
+.loader_text {
+  color: #526de5;
+  width: 200px;
+}

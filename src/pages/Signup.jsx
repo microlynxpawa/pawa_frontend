@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import { toast } from "react-toastify";
 
+import Loader from "../components/Loader";
 import Form from "../components/Forms/Form";
 import Background from "../assets/images/bg-pattern-light.svg";
 import Logo from "../assets/images/Pawa-logo-removebg.png";
@@ -47,7 +48,8 @@ class Signup extends Form {
     if (this.state.isChecked) {
       try {
         this.setState({ loading: true });
-        const { data } = await signup(userData);
+        await signup(userData);
+        localStorage.setItem("email", this.state.data.emailAddress);
         window.location = "/validate";
       } catch (error) {
         if (error.response && error.response.data && error.response.data.detail)
@@ -63,7 +65,7 @@ class Signup extends Form {
 
   render() {
     return this.state.loading ? (
-      <h1 className="appLoader mySpinner">LOADING.....</h1>
+      <Loader />
     ) : (
       <React.Fragment>
         <div

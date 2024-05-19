@@ -8,16 +8,16 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./stylesheets/style.css";
 import "react-phone-input-2/lib/style.css";
-import "react-phone-number-input/style.css";
+//import "react-phone-number-input/style.css";
 
 function App() {
   return (
     <React.Fragment>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Signup />} />
         <Route path="/validate" element={<VerificationCode />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/notfound" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/notfound" />} />
       </Routes>

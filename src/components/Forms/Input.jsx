@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-function Input({ error, label, name, onChange, placeholder, type }) {
-  const [showPassword] = useState(false);
+function Input({ error, label, name, onChange, placeholder, type, icon }) {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handlePswdDisplay = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div class="mb-3">
-      <label for="" class="form-label">
+      <label for={name} class="form-label">
         {label}&nbsp;
         {error && (
           <span style={{ color: "red", fontSize: "12px" }}>
@@ -14,13 +19,33 @@ function Input({ error, label, name, onChange, placeholder, type }) {
           </span>
         )}
       </label>
-      <input
-        class="form-control"
-        type={showPassword ? "text" : type}
-        name={name}
-        onChange={onChange}
-        placeholder={placeholder}
-      />
+      {icon ? (
+        <div class="input-group input-group-merge">
+          <input
+            class="form-control"
+            type={showPassword ? "text" : type}
+            name={name}
+            onChange={onChange}
+            placeholder={placeholder}
+          />
+
+          <div
+            class="input-group-text"
+            onClick={handlePswdDisplay}
+            data-password="false"
+          >
+            {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+          </div>
+        </div>
+      ) : (
+        <input
+          class="form-control"
+          type={showPassword ? "text" : type}
+          name={name}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+      )}
     </div>
   );
 }
