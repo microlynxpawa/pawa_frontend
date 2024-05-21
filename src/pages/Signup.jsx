@@ -159,7 +159,7 @@ class Signup extends Form {
                 <div class="row mt-3">
                   <div class="col-12 text-center">
                     <p class="text-muted">
-                      Already have account?{" "}
+                      Already have an account?{" "}
                       <Link to="/login" class="text-muted ms-1">
                         <b>Log In</b>
                       </Link>
