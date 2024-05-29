@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-function Input({ error, label, name, onChange, placeholder, type, icon }) {
+function Input({
+  error,
+  label,
+  name,
+  onChange,
+  placeholder,
+  type,
+  classe,
+  icon,
+}) {
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePswdDisplay = () => {
@@ -9,7 +18,7 @@ function Input({ error, label, name, onChange, placeholder, type, icon }) {
   };
 
   return (
-    <div class="mb-3">
+    <div class={classe}>
       <label for={name} class="form-label">
         {label}&nbsp;
         {error && (

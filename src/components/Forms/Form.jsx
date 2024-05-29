@@ -52,12 +52,13 @@ class Form extends Component {
     return errors;
   };
 
-  renderInput(type, name, placeholder, label, icon) {
+  renderInput(type, name, placeholder, label, classe, icon) {
     const { data, error, showPassword } = this.state;
     return (
       <Input
         name={name}
         type={showPassword ? "text" : type}
+        classe={classe}
         label={label}
         icon={icon}
         value={data[name]}
@@ -81,7 +82,7 @@ class Form extends Component {
     );
   }
 
-  renderSelect(name, options, label) {
+  renderSelect(name, options, label, classe) {
     const { data, error } = this.state;
     return (
       <Select
@@ -90,12 +91,13 @@ class Form extends Component {
         options={options}
         onChange={this.handleChange}
         value={data[name]}
+        classe={classe}
         error={error[name]}
       />
     );
   }
 
-  renderCheckbox() {
+  renderCheckbox(label) {
     return (
       <div class="form-check">
         <input
@@ -104,12 +106,18 @@ class Form extends Component {
           class="form-check-input"
           id="checkbox-signup"
         />
-        <label class="form-check-label" for="checkbox-signup">
-          I accept{" "}
-          <a href="#" class="text-muted">
-            Terms and Conditions
-          </a>
-        </label>
+        {label ? (
+          <label class="form-check-label" for="checkbox-signup">
+            {label}
+          </label>
+        ) : (
+          <label class="form-check-label" for="checkbox-signup">
+            I accept{" "}
+            <a href="#" class="text-muted">
+              Terms and Conditions
+            </a>
+          </label>
+        )}
       </div>
     );
   }

@@ -6,10 +6,12 @@ import { FaRegBell } from "react-icons/fa";
 import { MdViewCompact } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import User1 from "../assets/images/avatar-1.jpg";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const [isBellActive, setIsBellActive] = useState(false);
+  const [isLanguageActive, setIslanguageActive] = useState(false);
 
   const handleUserDropClick = () => {
     setIsActive(!isActive);
@@ -19,16 +21,24 @@ export default function Navbar() {
     setIsBellActive(!isBellActive);
   };
 
+  const handleLanguageClick = () => {
+    setIslanguageActive(!isLanguageActive);
+  };
+
   return (
     <React.Fragment>
-      <div class="navbar-custom topnav-navbar topnav-navbar-pawa-color">
+      <div class="navbar-custom topnav-navbar topnav-navbar-pawa-color stikyNav">
         <div class="container-fluid">
-          <a href="#" class="topnav-logo">
+          <a class="topnav-logo">
             <span class="topnav-logo-lg">
-              <img src={Logo} alt="" height="40" />
+              <NavLink to="/home">
+                <img src={Logo} alt="" height="40" />
+              </NavLink>
             </span>
             <span class="topnav-logo-sm">
-              <img src={Logo} alt="" height="40" />
+              <NavLink to="/home">
+                <img src={Logo} alt="" height="40" />
+              </NavLink>
             </span>
           </a>
 
@@ -58,6 +68,7 @@ export default function Navbar() {
 
             <li class="dropdown notification-list topbar-dropdown d-none d-lg-block">
               <a
+                onClick={handleLanguageClick}
                 class="nav-link dropdown-toggle arrow-none"
                 data-bs-toggle="dropdown"
                 id="topbar-languagedrop"
@@ -71,7 +82,9 @@ export default function Navbar() {
                 <i class="mdi mdi-chevron-down"></i>
               </a>
               <div
-                class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu"
+                class={`dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu ${
+                  isLanguageActive ? "show" : ""
+                }`}
                 aria-labelledby="topbar-languagedrop"
               >
                 <a href="#" class="dropdown-item notify-item">
@@ -215,64 +228,6 @@ export default function Navbar() {
                     </div>
                   </a>
 
-                  <h5 class="text-muted font-13 fw-normal mt-0">30 Dec 2021</h5>
-
-                  <a
-                    href="javascript:void(0);"
-                    class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2"
-                  >
-                    <div class="card-body">
-                      <span class="float-end noti-close-btn text-muted">
-                        <i class="mdi mdi-close"></i>
-                      </span>
-                      <div class="d-flex align-items-center">
-                        <div class="flex-shrink-0">
-                          <div class="notify-icon bg-primary-pawa">
-                            <i class="mdi mdi-comment-account-outline"></i>
-                          </div>
-                        </div>
-                        <div class="flex-grow-1 text-truncate ms-2">
-                          <h5 class="noti-item-title fw-semibold font-14">
-                            Datacorp
-                          </h5>
-                          <small class="noti-item-subtitle text-muted">
-                            Caleb Flakelar commented on Admin
-                          </small>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
-                  <a
-                    href="javascript:void(0);"
-                    class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2"
-                  >
-                    <div class="card-body">
-                      <span class="float-end noti-close-btn text-muted">
-                        <i class="mdi mdi-close"></i>
-                      </span>
-                      <div class="d-flex align-items-center">
-                        <div class="flex-shrink-0">
-                          <div class="notify-icon">
-                            <img
-                              src="assets/images/users/avatar-4.jpg"
-                              class="img-fluid rounded-circle"
-                              alt=""
-                            />
-                          </div>
-                        </div>
-                        <div class="flex-grow-1 text-truncate ms-2">
-                          <h5 class="noti-item-title fw-semibold font-14">
-                            Karen Robinson
-                          </h5>
-                          <small class="noti-item-subtitle text-muted">
-                            Wow ! this admin looks good and awesome design
-                          </small>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
                   <div class="text-center">
                     <i class="mdi mdi-dots-circle mdi-spin text-muted h3 mt-0"></i>
                   </div>
@@ -298,7 +253,9 @@ export default function Navbar() {
               >
                 <MdViewCompact style={{ marginTop: 20 }} size={28} />
               </a>
-              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg p-0">
+              <div
+                class={`dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg p-0`}
+              >
                 <div class="p-2">
                   <div class="row g-0">
                     <div class="col">
@@ -368,6 +325,7 @@ export default function Navbar() {
 
             <li class="dropdown notification-list">
               <a
+                onClick={handleUserDropClick}
                 class="nav-link dropdown-toggle nav-user arrow-none me-0 user-pawa-color"
                 data-bs-toggle="dropdown"
                 id="topbar-userdrop"
@@ -376,7 +334,7 @@ export default function Navbar() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <span class="account-user-avatar" onClick={handleUserDropClick}>
+                <span class="account-user-avatar">
                   <img src={User1} alt="user-image" class="rounded-circle" />
                 </span>
                 <span>

@@ -5,6 +5,7 @@ import PhoneInput from "react-phone-input-2";
 import { toast } from "react-toastify";
 
 import Loader from "../components/Loader";
+import AuthFooter from "../components/AuthFooter";
 import Form from "../components/Forms/Form";
 import Background from "../assets/images/bg-pattern-light.svg";
 import Logo from "../assets/images/Pawa-logo-removebg.png";
@@ -105,33 +106,37 @@ class Signup extends Form {
                         "text",
                         "firstName",
                         "Enter your first name",
-                        "First Name *"
+                        "First Name",
+                        "mb-3"
                       )}
 
                       {this.renderInput(
                         "text",
                         "middleName",
                         "Enter your middle name",
-                        "Middle Name"
+                        "Middle Name (Optional)",
+                        "mb-3"
                       )}
 
                       {this.renderInput(
                         "text",
                         "lastName",
                         "Enter your last name",
-                        "Last Name *"
+                        "Last Name ",
+                        "mb-3"
                       )}
 
                       {this.renderInput(
                         "text",
                         "emailAddress",
                         "Enter your email address",
-                        "Email Address *"
+                        "Email Address ",
+                        "mb-3"
                       )}
 
                       <div class="mb-3">
                         <label for="" class="form-label">
-                          Phone Number *
+                          Phone Number
                         </label>
                         <PhoneInput
                           className="number"
@@ -147,14 +152,16 @@ class Signup extends Form {
                         {this.renderSelect(
                           "typeOfID",
                           this.state.idTypes,
-                          "Select ID Type *"
+                          "Select ID Type ",
+                          "mb-3 col-md-5"
                         )}
                         <div class="mb-3 col-md-7">
                           {this.renderInput(
                             "text",
                             "idNumber",
                             "Enter ID Number",
-                            "ID Number *"
+                            "ID Number ",
+                            "mb-3"
                           )}
                         </div>
                       </div>
@@ -196,10 +203,7 @@ class Signup extends Form {
             </div>
           </div>
         </div>
-
-        <footer class="footer footer-alt">
-          {new Date().getFullYear()} © PAWA Limited - pawa.com
-        </footer>
+        <AuthFooter />
       </React.Fragment>
     );
   }

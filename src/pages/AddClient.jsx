@@ -2,9 +2,10 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import PageTitle from "../components/PageTitle";
+import AddClientForm from "../components/Client/AddClientForm";
 import Footer from "../components/Footer";
 
-export default function Home() {
+export default function AddClient() {
   return (
     <React.Fragment>
       <Navbar />
@@ -13,11 +14,11 @@ export default function Home() {
           <Sidebar />
           <div class="content-page">
             <div class="content">
-              <PageTitle title={"Dasboard"} />
-              <h1>Hello Pawa Team</h1>
+              <PageTitle title={"Add Client"} />
+              <AddClientForm />
             </div>
-            <Footer />
           </div>
+          <Footer />
         </div>
       </div>
     </React.Fragment>

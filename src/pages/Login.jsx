@@ -8,6 +8,7 @@ import Form from "../components/Forms/Form";
 import Background from "../assets/images/bg-pattern-light.svg";
 import Logo from "../assets/images/Pawa-logo-removebg.png";
 import { login } from "../services/api.calls/auth.service";
+import AuthFooter from "../components/AuthFooter";
 
 import "../stylesheets/app.modern.min.css";
 import "../stylesheets/icons.min.css";
@@ -87,13 +88,15 @@ export default class Login extends Form {
                         "text",
                         "emailAddress",
                         "Enter your email address",
-                        "Email Address"
+                        "Email Address",
+                        "mb-3"
                       )}
                       {this.renderInput(
                         "password",
                         "password",
                         "Enter your password",
                         "Password",
+                        "mb-3",
                         "icon"
                       )}
 
@@ -132,9 +135,7 @@ export default class Login extends Form {
             </div>
           </div>
         </div>
-        <footer class="footer footer-alt">
-          {new Date().getFullYear()} © PAWA Limited - pawa.com
-        </footer>
+        <AuthFooter />
       </React.Fragment>
     );
   }
