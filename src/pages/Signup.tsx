@@ -1,5 +1,4 @@
 import React from "react";
-import Joi from "joi-browser";
 import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import { toast } from "react-toastify";
@@ -10,12 +9,13 @@ import Form from "../components/Forms/Form";
 import Background from "../assets/images/bg-pattern-light.svg";
 import Logo from "../assets/images/Pawa-logo-removebg.png";
 import { signup } from "../services/api.calls/auth.service";
+import { RequestModel, AuthModel } from "../utils/RequestModel"; 
 
 import "../stylesheets/app.modern.min.css";
 import "../stylesheets/icons.min.css";
 
 class Signup extends Form {
-  state = {
+  state: RequestModel.FormState<AuthModel.TAuth, String> = {
     data: {
       firstName: "",
       lastName: "",
@@ -23,21 +23,12 @@ class Signup extends Form {
       emailAddress: "",
       typeOfID: "",
       idNumber: "",
+      mobilePhone: "",
     },
-    phone: "",
     loading: false,
     isChecked: false,
-    idTypes: ["Type Of ID", "National ID", "Driver License", "passport"],
+    dropdownValues: ["Type Of ID", "National ID", "Driver License", "passport"],
     error: {},
-  };
-
-  schema = {
-    firstName: Joi.string().min(2).max(30).required().label("First Name"),
-    lastName: Joi.string().min(3).max(30).required().label("Last Name"),
-    middleName: Joi.string().min(3).max(30).label("Middle Name").allow(""),
-    emailAddress: Joi.string().email().required().label("Email"),
-    typeOfID: Joi.string().max(15).required().label("ID Type"),
-    idNumber: Joi.string().max(20).required().label("ID Number"),
   };
 
   doToggle = async () => {};
@@ -45,14 +36,14 @@ class Signup extends Form {
   toggleCheck = () => this.setState({ isChecked: !this.state.isChecked });
 
   doSubmit = async () => {
-    const userData = { ...this.state.data, mobilePhone: this.state.phone };
+    const userData = { ...this.state.data };
     if (this.state.isChecked) {
       try {
         this.setState({ loading: true });
         await signup(userData);
         localStorage.setItem("email", this.state.data.emailAddress);
-        window.location = "/validate";
-      } catch (error) {
+        window.location.href = "/validate";
+      } catch (error: any) {
         if (error.response && error.response.data && error.response.data.detail)
           toast.error(error.response.data.detail);
         else toast.error(error.response.data.message);
@@ -66,11 +57,11 @@ class Signup extends Form {
 
   render() {
     return this.state.loading ? (
-      <Loader />
+      <Loader message={undefined} width={undefined} height={undefined} />
     ) : (
       <React.Fragment>
         <div
-          class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5"
+          className="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5"
           style={{
             backgroundImage: `url(${Background})`,
             backgroundPosition: "center",
@@ -78,11 +69,11 @@ class Signup extends Form {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-xxl-4 col-lg-5">
-                <div class="card">
-                  <div class="card-header pt-2 pb-2 text-center bg-primary">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-xxl-4 col-lg-5">
+                <div className="card">
+                  <div className="card-header pt-2 pb-2 text-center bg-primary">
                     <a href="#">
                       <span>
                         <img src={Logo} alt="" height="60" />
@@ -90,12 +81,12 @@ class Signup extends Form {
                     </a>
                   </div>
 
-                  <div class="card-body p-4">
-                    <div class="text-center w-75 m-auto">
-                      <h4 class="text-dark-50 text-center mt-0 fw-bold">
+                  <div className="card-body p-4">
+                    <div className="text-center w-75 m-auto">
+                      <h4 className="text-dark-50 text-center mt-0 fw-bold">
                         Sign Up
                       </h4>
-                      <p class="text-muted mb-4">
+                      <p className="text-muted mb-4">
                         Don't have an account? Create your account, it takes
                         less than a minute{" "}
                       </p>
@@ -134,28 +125,32 @@ class Signup extends Form {
                         "mb-3"
                       )}
 
-                      <div class="mb-3">
-                        <label for="" class="form-label">
+                      <div className="mb-3">
+                        <label htmlFor="" className="form-label">
                           Phone Number
                         </label>
                         <PhoneInput
-                          className="number"
+                          //className="number"
                           country={localStorage.getItem("isocode") ?? "gh"}
-                          value={this.state.phone}
-                          onChange={(phone) => this.setState({ phone })}
+                          value={this.state.data.mobilePhone}
+                          onChange={(mobilePhone) =>
+                            this.setState({
+                              data: { ...this.state.data, mobilePhone },
+                            })
+                          }
                           placeholder="Enter your phone number"
-                          required
+                          //required
                         />
                       </div>
 
-                      <div class="row g-2">
+                      <div className="row g-2">
                         {this.renderSelect(
                           "typeOfID",
-                          this.state.idTypes,
+                          this.state.dropdownValues,
                           "Select ID Type ",
                           "mb-3 col-md-5"
                         )}
-                        <div class="mb-3 col-md-7">
+                        <div className="mb-3 col-md-7">
                           {this.renderInput(
                             "text",
                             "idNumber",
@@ -166,34 +161,34 @@ class Signup extends Form {
                         </div>
                       </div>
 
-                      <div class="mb-3">
-                        <div class="form-check">
+                      <div className="mb-3">
+                        <div className="form-check">
                           <input
                             type="checkbox"
-                            class="form-check-input"
+                            className="form-check-input"
                             defaultChecked={this.state.isChecked}
                             onChange={this.toggleCheck}
                           />
-                          <label class="form-check-label" for="checkbox-signup">
+                          <label className="form-check-label" htmlFor="checkbox-signup">
                             I accept{" "}
-                            <a href="#" class="text-muted">
+                            <a href="#" className="text-muted">
                               Terms and Conditions
                             </a>
                           </label>
                         </div>
                       </div>
-                      <div class="mb-3 text-center">
+                      <div className="mb-3 text-center">
                         {this.renderButton("Sign Up")}
                       </div>
                     </form>
                   </div>
                 </div>
 
-                <div class="row mt-3">
-                  <div class="col-12 text-center">
-                    <p class="text-muted">
+                <div className="row mt-3">
+                  <div className="col-12 text-center">
+                    <p className="text-muted">
                       Already have account?{" "}
-                      <Link to="/login" class="text-muted ms-1">
+                      <Link to="/login" className="text-muted ms-1">
                         <b>Log In</b>
                       </Link>
                     </p>

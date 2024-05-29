@@ -1,10 +1,9 @@
 import React from "react";
 import Form from "../Forms/Form";
-import Joi from "joi-browser";
-import { TNewClient, FormState } from "../../utils/RequestModel"; 
+import { RequestModel, ClientModel } from "../../utils/RequestModel"; 
 
 export default class AddClientForm extends Form {
-  state: FormState<TNewClient, String> = {
+  state: RequestModel.FormState<ClientModel.TNewClient, String> = {
     data: {
       email: "",
       password: "",
@@ -16,17 +15,8 @@ export default class AddClientForm extends Form {
     },
     loading: false,
     isChecked: false,
-    state: ["Abuja", "Tabara", "Lagos", "Ogun"],
+    dropdownValues: ["Abuja", "Tabara", "Lagos", "Ogun"],
     error: {},
-  };
-
-  schema = {
-    email: Joi.string().min(2).max(30).required(),
-    password: Joi.string().min(3).max(30).required(),
-    address: Joi.string().min(3).max(30),
-    address2: Joi.string().email().required(),
-    city: Joi.string().max(15).required(),
-    zip: Joi.string().max(20).required(),
   };
 
   doSubmit = async () => {
@@ -82,7 +72,7 @@ export default class AddClientForm extends Form {
               )}
               {this.renderSelect(
                 "state",
-                this.state.state,
+                this.state.dropdownValues,
                 "Select state",
                 "mb-3 col-md-4"
               )}

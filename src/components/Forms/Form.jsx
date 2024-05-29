@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Joi from "joi-browser";
 
 import Input from "./Input";
 import PhoneInput from "./PhoneInput";
@@ -9,14 +8,10 @@ class Form extends Component {
   state = {
     data: {},
     error: {},
-    showPassword: false,
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const error = this.validate();
-    this.setState({ error: error || {} });
-    if (error) return;
     this.doSubmit();
   };
 
@@ -25,39 +20,17 @@ class Form extends Component {
   };
 
   handleChange = ({ currentTarget: input }) => {
-    const error = { ...this.state.error };
-    const errorMessage = this.validateInput(input);
-    if (errorMessage) error[input.name] = errorMessage;
-    else delete error[input.name];
-
     const data = { ...this.state.data };
     data[input.name] = input.value;
-    this.setState({ error, data });
-  };
-
-  validateInput = ({ name, value }) => {
-    const obj = { [name]: value };
-    const schema = { [name]: this.schema[name] };
-    const { error } = Joi.validate(obj, schema);
-    if (!error) return null;
-    return error.details[0].message;
-  };
-
-  validate = () => {
-    const options = { abortEarly: false };
-    const { error } = Joi.validate(this.state.data, this.schema, options);
-    if (!error) return null;
-    const errors = {};
-    for (let item of error.details) errors[item.path[0]] = item.message;
-    return errors;
+    this.setState({ data });
   };
 
   renderInput(type, name, placeholder, label, classe, icon) {
-    const { data, error, showPassword } = this.state;
+    const { data, error } = this.state;
     return (
       <Input
         name={name}
-        type={showPassword ? "text" : type}
+        type={data["showPassword"] ? "text" : type}
         classe={classe}
         label={label}
         icon={icon}
@@ -124,10 +97,7 @@ class Form extends Component {
 
   renderButton(label) {
     return (
-      <button
-        className={`btn btn-primary ${this.validate() && "disabled"}`}
-        type="submit"
-      >
+      <button className={`btn btn-primary`} type="submit">
         {" "}
         {label}
       </button>
