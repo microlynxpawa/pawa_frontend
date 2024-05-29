@@ -10,6 +10,7 @@ import PreventBackNavigation from "../components/PreventBackNavigation";
 
 import "../stylesheets/app.modern.min.css";
 import "../stylesheets/icons.min.css";
+import AuthFooter from "../components/AuthFooter";
 
 export default function VerificationCode() {
   const [otpValue, setOtpValue] = useState("");
@@ -251,9 +252,7 @@ export default function VerificationCode() {
                 </div>
               </div>
               <br />
-              <footer class="footer footer-alt">
-                {new Date().getFullYear()} © PAWA Limited - pawa.com
-              </footer>
+              <AuthFooter />
             </div>
           </div>
         </div>

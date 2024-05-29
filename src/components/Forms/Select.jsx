@@ -6,10 +6,11 @@ export default function Select({
   options,
   onChange,
   value,
+  classe,
   error,
 }) {
   return (
-    <div class="mb-3 col-md-5">
+    <div class={classe}>
       <label for="inputState" class="form-label">
         {label}{" "}
         {error && (
