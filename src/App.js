@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import AddClient from "./pages/AddClient";
 import VerificationCode from "./pages/VerificationCode";
+import CreateClient from "./pages/CreateClients";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./stylesheets/app.modern.min.css";
@@ -24,6 +25,7 @@ function App() {
         <Route path="/validate" element={<VerificationCode />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/createclient" element={<CreateClient />} />
         <Route path="/notfound" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/notfound" />} />
       </Routes>

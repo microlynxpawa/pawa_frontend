@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 
+// The phone input was created here  because it has scecific styles
 export default function ({ error, label, name, placeholder, type }) {
   const [value, setValue] = useState();
   localStorage.setItem("phone", value);

@@ -5,6 +5,9 @@ import Input from "./Input";
 import PhoneInput from "./PhoneInput";
 import Select from "./Select";
 
+// In this file we create functions that will be used to render different input field that we creatd in other files like input.jsx or phoneinput.jsx.
+// We also create any function thatwill be used in any other form.
+// Because we are using classes, any class that will extend the form class, will have access to the method it needs. 
 class Form extends Component {
   state = {
     data: {},

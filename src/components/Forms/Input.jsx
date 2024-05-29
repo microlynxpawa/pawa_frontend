@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+// This is input field for the passwords and basic input fielda and any othe input field that
+// is too different shall be created in a new file.
 function Input({
   error,
   label,

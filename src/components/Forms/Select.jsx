@@ -1,5 +1,6 @@
 import React from "react";
 
+// Select input created ouside because it has scecific styles
 export default function Select({
   name,
   label,

@@ -2,10 +2,11 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import PageTitle from "../components/PageTitle";
-// import AddClientForm from "../components/Client/AddClientForm";
 import Footer from "../components/Footer";
 
-export default function AddClient() {
+import CreateClientForm from "../components/Client/CreateClientForm";
+
+export default function CreateClient() {
   return (
     <React.Fragment>
       <Navbar />
@@ -14,11 +15,11 @@ export default function AddClient() {
           <Sidebar />
           <div class="content-page">
             <div class="content">
-              <PageTitle title={"Add Client"} />
-              {/* <AddClientForm /> */}
+              <PageTitle title={"Create client"} />
+              <CreateClientForm />
             </div>
+            <Footer />
           </div>
-          <Footer />
         </div>
       </div>
     </React.Fragment>
