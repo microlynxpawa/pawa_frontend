@@ -7,9 +7,11 @@ import { MdViewCompact } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import User1 from "../assets/images/avatar-1.jpg";
 
-export default function Navbar() {
+export default function Navbar({toggleRightbar, isRightBar}) {
   const [isActive, setIsActive] = useState(false);
   const [isBellActive, setIsBellActive] = useState(false);
+  const [ isLanActive, setIsLanActive] = useState(false);
+  const [isMenuActive, setIsMenuActive] = useState(false);
 
   const handleUserDropClick = () => {
     setIsActive(!isActive);
@@ -18,6 +20,15 @@ export default function Navbar() {
   const handleBellDropClick = () => {
     setIsBellActive(!isBellActive);
   };
+
+  const handleLanDropClick = () => {
+    setIsLanActive(!isLanActive)
+  };
+
+  const handleMenuDropClick = () => {
+    setIsMenuActive(!isMenuActive)
+  }
+
 
   return (
     <React.Fragment>
@@ -44,7 +55,7 @@ export default function Navbar() {
               >
                 <i class="dripicons-search noti-icon"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+              <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0 ">
                 <form class="p-3">
                   <input
                     type="text"
@@ -56,7 +67,10 @@ export default function Navbar() {
               </div>
             </li>
 
-            <li class="dropdown notification-list topbar-dropdown d-none d-lg-block">
+            <li 
+              class="dropdown notification-list topbar-dropdown d-none d-lg-block"
+              onClick={handleLanDropClick}
+              >
               <a
                 class="nav-link dropdown-toggle arrow-none"
                 data-bs-toggle="dropdown"
@@ -71,7 +85,11 @@ export default function Navbar() {
                 <i class="mdi mdi-chevron-down"></i>
               </a>
               <div
-                class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu"
+                class={`dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu 
+                ${
+                  isLanActive ? "show" : ""
+                }
+                `}
                 aria-labelledby="topbar-languagedrop"
               >
                 <a href="#" class="dropdown-item notify-item">
@@ -98,9 +116,11 @@ export default function Navbar() {
                 <span class="noti-icon-badge"></span>
               </a>
               <div
-                class={`dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg ${
+                class={`dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg
+                 ${
                   isBellActive ? "show" : ""
-                }`}
+                }
+                `}
                 style={{
                   position: "absolute",
                   margin: "0px",
@@ -287,7 +307,8 @@ export default function Navbar() {
               </div>
             </li>
 
-            <li class="dropdown notification-list d-none d-sm-inline-block">
+            <li class="dropdown notification-list d-none d-sm-inline-block"
+            onClick={handleMenuDropClick}>
               <a
                 class="nav-link dropdown-toggle arrow-none"
                 data-bs-toggle="dropdown"
@@ -298,30 +319,32 @@ export default function Navbar() {
               >
                 <MdViewCompact style={{ marginTop: 20 }} size={28} />
               </a>
-              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg p-0">
+              <div class={`dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg p-0
+              ${isMenuActive ? "show" : ''}
+              `}>
                 <div class="p-2">
                   <div class="row g-0">
                     <div class="col">
                       <a class="dropdown-icon-item" href="#">
-                        <img src="assets/images/brands/slack.png" alt="slack" />
+                        {/* <img src="assets/images/brands/slack.png" alt="slack" /> */}
                         <span>Slack</span>
                       </a>
                     </div>
                     <div class="col">
                       <a class="dropdown-icon-item" href="#">
-                        <img
+                        {/* <img
                           src="assets/images/brands/github.png"
                           alt="Github"
-                        />
+                        /> */}
                         <span>GitHub</span>
                       </a>
                     </div>
                     <div class="col">
                       <a class="dropdown-icon-item" href="#">
-                        <img
+                        {/* <img
                           src="assets/images/brands/dribbble.png"
                           alt="dribbble"
-                        />
+                        /> */}
                         <span>Dribbble</span>
                       </a>
                     </div>
@@ -330,28 +353,28 @@ export default function Navbar() {
                   <div class="row g-0">
                     <div class="col">
                       <a class="dropdown-icon-item" href="#">
-                        <img
+                        {/* <img
                           src="assets/images/brands/bitbucket.png"
                           alt="bitbucket"
-                        />
+                        /> */}
                         <span>Bitbucket</span>
                       </a>
                     </div>
                     <div class="col">
                       <a class="dropdown-icon-item" href="#">
-                        <img
+                        {/* <img
                           src="assets/images/brands/dropbox.png"
                           alt="dropbox"
-                        />
+                        /> */}
                         <span>Dropbox</span>
                       </a>
                     </div>
                     <div class="col">
                       <a class="dropdown-icon-item" href="#">
-                        <img
+                        {/* <img
                           src="assets/images/brands/g-suite.png"
                           alt="G Suite"
-                        />
+                        /> */}
                         <span>G Suite</span>
                       </a>
                     </div>
@@ -360,13 +383,21 @@ export default function Navbar() {
               </div>
             </li>
 
-            <li class="notification-list">
-              <a class="nav-link end-bar-toggle" href="javascript: void(0);">
+            <li class="notification-list"
+            >
+              <a class="nav-link end-bar-toggle" href="javascript: void(0);"
+              role="button"
+              onClick={toggleRightbar}
+              >
                 <IoSettingsOutline style={{ marginTop: 20 }} size={24} />
               </a>
             </li>
+            
 
-            <li class="dropdown notification-list">
+            <li 
+              class="dropdown notification-list"
+              onClick={handleUserDropClick}
+              >
               <a
                 class="nav-link dropdown-toggle nav-user arrow-none me-0 user-pawa-color"
                 data-bs-toggle="dropdown"
@@ -376,7 +407,7 @@ export default function Navbar() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <span class="account-user-avatar" onClick={handleUserDropClick}>
+                <span class="account-user-avatar">
                   <img src={User1} alt="user-image" class="rounded-circle" />
                 </span>
                 <span>
