@@ -107,3 +107,43 @@ export namespace GlAccountModel {
     error: Record<string, any>;
   };
 }
+
+export namespace ProductModel{
+  export type TProduct = {
+    productId: string;
+    productName: string;
+    productTypeId: string;
+    accountIdPrefix: string;
+    currencyId: string;
+    creditInterestRate: string;
+    debitInterestRate: string;
+    creditInterestProcedure: string;
+    debitInterestProcedure: string;
+    debitInterestDays: string;
+    creditInterestDays: string;
+    creditInterestStart: string;
+    debitInterestStart: string;
+    creditInterestFrequency: string;
+    debitInterestFrequency: string;
+    minimumBalance: string;
+    accountPerCustomer: string;
+    isChequeBookAllowed: string;
+    doNotAllowCredit: string;
+    doNotAllowDebit: string;
+    canGoInCredit: string;
+    canGoInDebit: string;
+    enforceBioAuthentication: string;
+    dormantProductId: string;
+    dormantDay: string;
+      isBlocked: string;
+    operatorId: string;
+  }
+
+  export type ProductFormState = {
+    data: TProduct;
+    loading: boolean;
+    isChecked: boolean;
+    state: string[];
+    error: Record<string, any>;
+  }
+}

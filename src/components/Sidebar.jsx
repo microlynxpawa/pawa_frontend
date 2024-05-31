@@ -142,6 +142,12 @@ export default function Sidebar() {
                 <li>
                   <a href="apps-ecommerce-orders.html">Clients Report</a>
                 </li>
+                <li>
+                  <NavLink to="/add-gl-account">ADD G/L Account</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/add-product">ADD PRODUCT</NavLink>
+                </li>
               </ul>
             </div>
           </li>

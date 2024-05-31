@@ -2,10 +2,10 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import PageTitle from "../components/PageTitle";
-import AddGlAccountForm from "../components/Accounts/AddGlAccountForm";
+import AddProductForm from "../components/products/AddProductsForm";
 import Footer from "../components/Footer";
 
-export default function AddGlAccount() {
+export default function AddProduct() {
   return (
     <React.Fragment>
       <Navbar />
@@ -14,8 +14,8 @@ export default function AddGlAccount() {
           <Sidebar />
           <div class="content-page">
             <div class="content">
-              <PageTitle title={"Add General Ledger Account"} />
-              <AddGlAccountForm />
+              <PageTitle title={"Add Product"} />
+              <AddProductForm />
             </div>
           </div>
           <Footer />

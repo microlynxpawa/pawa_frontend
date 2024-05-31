@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../Forms/Form";
 import { RequestModel, GlAccountModel } from "../../utils/RequestModel"; 
 
-export default class AddGlAccount extends Form {
+export default class AddGlAccountForm extends Form {
   state: RequestModel.FormState<GlAccountModel.TGlAccount, String> = {
     data: {
         ourBranchId: "",
@@ -24,7 +24,7 @@ export default class AddGlAccount extends Form {
     },
     loading: false,
     isChecked: false,
-    // dropdownValues: ["Abuja", "Tabara", "Lagos", "Ogun"],
+    dropdownValues: ["Abuja", "Tabara", "Lagos", "Ogun"],
     error: {},
   };
 
@@ -42,20 +42,19 @@ export default class AddGlAccount extends Form {
           <br />
           <form>
           <div className="row g-2">
-              {this.renderInput(
-                "text",
-                "ourBranchId",
-                "Enter Branch ID",
-                "Branch ID",
+                {this.renderInput(
+                    "text",
+                    "ourBranchId",
+                    "Enter Branch ID",
+                    "Branch ID",
+                    "mb-3 col-md-6"
+                )}
+                {this.renderSelect(
+                "accountId",
+                this.state.dropdownValues,
+                "Select Account ID",
                 "mb-3 col-md-6"
-              )}
-            {this.renderInput(
-              "text",
-              "accountUd",
-              "Enter Account ID",
-              "Account ID",
-              "mb-3 col-md-6"
-            )}
+                )}
             </div>
               {this.renderInput(
                 "text",
@@ -145,23 +144,34 @@ export default class AddGlAccount extends Form {
                     )}
                 </div>
                 <div className="row g-2">
-                    {this.renderInput(
-                        "text",
-                        "ourBranchId",
-                        "Enter Branch ID",
-                        "Branch ID",
-                        "mb-3 col-md-6"
+                    {this.renderSelect(
+                        "doNotAllowCredit",
+                        this.state.dropdownValues,
+                        "Allow Credit ?",
+                        "mb-3 col-md-4"
                     )}
-                    {this.renderInput(
-                    "text",
-                    "accountUd",
-                    "Enter Account ID",
-                    "Account ID",
-                    "mb-3 col-md-6"
+                    {this.renderSelect(
+                        "doNotAllowDebit",
+                        this.state.dropdownValues,
+                        "Allow Debit ?",
+                        "mb-3 col-md-4"
                     )}
+                    {this.renderSelect(
+                        "isReconciliable",
+                        this.state.dropdownValues,
+                        "Reconcilable ?",
+                        "mb-3 col-md-4"
+                    )}  
                 </div>
+                {this.renderInput(
+                    "text",
+                    "operatorId",
+                    "Enter Operator ID",
+                    "Operator ID",
+                    "mb-3"
+                    )}
             {/* <div className="mb-2">{this.renderCheckbox("Check here")}</div> */}
-            {this.renderButton("Create Business Client")}
+            {this.renderButton("Create G/L Account")}
           </form>
         </div>
       </React.Fragment>
