@@ -8,15 +8,47 @@ export namespace RequestModel {
   }
 }
 
+export namespace BusinessClientModel {
+  export type TNewBusinessClient = {
+    clientName: string;
+    registeredAddress: string;
+    officeAddress: string;
+    officePhone1: string;
+    officePhone2: string;
+    emailId1: string;
+    emailId2: string;
+    registrationDate: string;
+    registrationNumber: string;
+    tinNumber: string;
+    operatorId: string;
+    testvalue?: any;
+  };
+
+  export type AddBusinessClientFormState = {
+    data: TNewBusinessClient;
+    loading: boolean;
+    isChecked: boolean;
+    state: string[];
+    error: Record<string, any>;
+  };
+}
+
 export namespace ClientModel {
   export type TNewClient = {
-    email: string;
-    password: string;
-    address: string;
-    address2: string;
-    city: string;
-    zip: string;
-    state: string;
+    title: string,
+    clientName: string,
+    gender: string,
+    homeAddress: string,
+    businessAddress: string,
+    mobileNumber: string,
+    officePhone: string,
+    emailId: string,
+    dateOfBirth: string,
+    nationality: string,
+    typeOfId: string,
+    idNumber: string,
+    tinNumber: string,
+    operatorId: string,
     testvalue?: any;
   };
 
@@ -43,5 +75,35 @@ export namespace AuthModel {
     idNumber?: string;
     mobilePhone?: string;
     password?: string;
+  };
+}
+
+export namespace GlAccountModel {
+  export type TGlAccount = {
+    ourBranchId: string;
+    accountId: string;
+    accountName: string;
+    accountDescription: string;
+    accountType: string;
+    currencyId: string;
+    openingBalance: string;
+    currentBalance: string;
+    unSupervisedCredit: string;
+    unSupervisedDebit: string;
+    creditTurnOver: string;
+    debitTurnOver: string;
+    doNotAllowCredit: string;
+    doNotAllowDebit: string;
+    isReconcilable: string;
+    operatorId: string;
+    testvalue?: any;
+  };
+
+  export type GlAccountFormState = {
+    data: TGlAccount;
+    loading: boolean;
+    isChecked: boolean;
+    state: string[];
+    error: Record<string, any>;
   };
 }

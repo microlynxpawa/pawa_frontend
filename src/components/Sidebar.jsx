@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import Wave from "../assets/images/waves.png";
-import { IconHome } from "./icons.components/icons";
+import { IconHome, IconUser, IconProduct } from "./icons.components/icons";
+import { MdBusinessCenter } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   const [isActive, setIsActive] = useState(false);
+  const [isBusinessActive, setIsBusinessActive] = useState(false);
+
 
   const handleSidebarClick = () => {
     setIsActive(!isActive);
   };
+  const handleBusinessClick = () => {
+    setIsBusinessActive(!isBusinessActive);
+  };
   return (
     <React.Fragment>
-      <div class="leftside-menu leftside-menu-detached">
+      <div class="leftside-menu leftside-menu-detached footerStyle">
         <div class="leftbar-user" style={{ backgroundImage: `url(${Wave})` }}>
           <div class="img-container">
             <img src="/assets/images/Pawa-logo-removebg.png" alt="" />
@@ -32,7 +38,7 @@ export default function Sidebar() {
               <span class="badge bg-info rounded-pill float-end">4</span>
               <span>
                 {" "}
-                <NavLink to="/home">Dashboards</NavLink>{" "}
+                <NavLink to="/home">Dashboard</NavLink>{" "}
               </span>
             </a>
             {/* <div class="collapse" id="sidebarDashboards">
@@ -114,14 +120,14 @@ export default function Sidebar() {
               aria-expanded="false"
               aria-controls="sidebarEcommerce"
               class="side-nav-link handCursor"
-              onClick={handleSidebarClick}
+              onClick={handleBusinessClick}
             >
-              <i class="uil-store"></i>
+              <IconUser />
               <span> Client </span>
               <span class="menu-arrow"></span>
             </a>
             <div
-              class={`collapse ${isActive ? "show" : ""}`}
+              class={`collapse ${isBusinessActive ? "show" : ""}`}
               id="sidebarEcommerce"
             >
               <ul class="side-nav-second-level">
@@ -144,22 +150,30 @@ export default function Sidebar() {
             <a
               //onClick={handleSidebarClick}
               data-bs-toggle="collapse"
-              href="#sidebarEmail"
+              //href="#sidebarEcommerce"
               aria-expanded="false"
-              aria-controls="sidebarEmail"
-              class="side-nav-link"
+              aria-controls="sidebarEcommerce"
+              class="side-nav-link handCursor"
+              onClick={handleSidebarClick}
+
             >
-              <i class="uil-envelope"></i>
-              <span> Accounts </span>
+              <MdBusinessCenter className="uil-envelope" />
+              <span> Business Client </span>
               <span class="menu-arrow"></span>
             </a>
-            <div class="collapse" id="sidebarEmail">
+            <div 
+             class={`collapse ${isActive ? "show" : ""}`}
+             id="sidebarEmail"
+             >
               <ul class="side-nav-second-level">
                 <li>
-                  <a href="apps-email-inbox.html">Create New Account</a>
+                  <NavLink to="/add-business-client">Add New Business Client</NavLink>
                 </li>
                 <li>
-                  <a href="apps-email-read.html">View Account</a>
+                  <a href="apps-email-read.html">View Business Client</a>
+                </li>
+                <li>
+                  <a href="apps-email-read.html">Business Client Details</a>
                 </li>
               </ul>
             </div>
@@ -173,7 +187,7 @@ export default function Sidebar() {
               aria-controls="sidebarProjects"
               class="side-nav-link"
             >
-              <i class="uil-briefcase"></i>
+              <IconProduct />
               <span> Products </span>
               <span class="menu-arrow"></span>
             </a>

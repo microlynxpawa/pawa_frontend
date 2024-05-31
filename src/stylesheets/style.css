@@ -83,3 +83,7 @@
 .footerZ {
   z-index: 999999999;
 }
+
+.footerStyle{
+  margin-bottom: 40px;
+}
