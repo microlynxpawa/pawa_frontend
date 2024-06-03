@@ -1,6 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 
 export default function Sidebar() {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleActive = () =>{
+    setIsActive(!isActive);
+  }
   return (
     <React.Fragment>
 <div className="leftside-menu leftside-menu-detached">
@@ -16,13 +21,22 @@ export default function Sidebar() {
   {/*- Sidemenu */}
   <ul className="side-nav">
     <li className="side-nav-title side-nav-item">Navigation</li>
-    <li className="side-nav-item">
-      <a data-bs-toggle="collapse" href="./pages/page2.html" aria-expanded="false" aria-controls="sidebarDashboards" className="side-nav-link">
+    <li 
+    className="side-nav-item"
+    >
+      <a data-bs-toggle="collapse" 
+      aria-expanded="false" 
+      aria-controls="sidebarDashboards" 
+      className="side-nav-link"
+      >
         <i className="-home-alt" />
         <span className="badge bg-info rounded-pill float-end">4</span>
         <span> Dashboards </span>
       </a>
-      <div className="collapse" id="sidebarDashboards">
+      <div 
+      className="collapse" 
+      id="sidebarDashboards"
+      >
         <ul className="side-nav-second-level">
           <li>
             <a href>Analytics</a>
@@ -41,50 +55,23 @@ export default function Sidebar() {
     </li>
     <li className="side-nav-title side-nav-item">Apps</li>
     <li className="side-nav-item">
-      <a href="apps-calendar.html" className="side-nav-link">
-        <i className="-calender" />
-        <span> Calendar </span>
-      </a>
-    </li>
-    <li className="side-nav-item">
-      <a href="apps-chat.html" className="side-nav-link">
-        <i className="-comments-alt" />
-        <span> Chat </span>
-      </a>
-    </li>
-    <li className="side-nav-item">
-      <a data-bs-toggle="collapse" href="#sidebarCrm" aria-expanded="false" aria-controls="sidebarCrm" className="side-nav-link">
-        <i className=" -tachometer-fast" />
-        <span className="badge bg-danger text-white float-end">New</span>
-        <span> CRM </span>
-      </a>
-      <div className="collapse" id="sidebarCrm">
-        <ul className="side-nav-second-level">
-          <li>
-            <a href="crm-dashboard.html">Dashboard</a>
-          </li>
-          <li>
-            <a href="crm-projects.html">Project</a>
-          </li>
-          <li>
-            <a href="crm-orders-list.html">Orders List</a>
-          </li>
-          <li>
-            <a href="crm-clients.html">Clients</a>
-          </li>
-          <li>
-            <a href="crm-management.html">Management</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li className="side-nav-item">
-      <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" className="side-nav-link">
+      <a data-bs-toggle="collapse"
+      aria-expanded="false" 
+      aria-controls="sidebarEcommerce" 
+      className="side-nav-link"
+      onClick={toggleActive}
+      >
         <i className="-store" />
         <span> Ecommerce </span>
         <span className="menu-arrow" />
       </a>
-      <div className="collapse" id="sidebarEcommerce">
+      <div className={`collapse 
+      ${
+        isActive ? "show" : ""
+      }
+      `} 
+      id="sidebarEcommerce"
+      >
         <ul className="side-nav-second-level">
           <li>
             <a href="apps-ecommerce-products.html">Products</a>
@@ -179,12 +166,12 @@ export default function Sidebar() {
         </ul>
       </div>
     </li>
-    <li className="side-nav-item">
+    {/* <li className="side-nav-item">
       <a href="apps-file-manager.html" className="side-nav-link">
         <i className="-folder-plus" />
         <span> File Manager </span>
       </a>
-    </li>
+    </li> */}
     <li className="side-nav-item">
       <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" className="side-nav-link">
         <i className="-document-layout-center" />
@@ -283,24 +270,7 @@ export default function Sidebar() {
         </ul>
       </div>
     </li>
-    <li className="side-nav-item">
-      <a data-bs-toggle="collapse" href="#sidebarTables" aria-expanded="false" aria-controls="sidebarTables" className="side-nav-link">
-        <i className="-table" />
-        <span> Tables </span>
-        <span className="menu-arrow" />
-      </a>
-      <div className="collapse" id="sidebarTables">
-        <ul className="side-nav-second-level">
-          <li>
-            <a href="tables-basic.html">Basic Tables</a>
-          </li>
-          <li>
-            <a href="tables-datatable.html">Data Tables</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li className="side-nav-item">
+    {/* <li className="side-nav-item">
       <a data-bs-toggle="collapse" href="#sidebarMaps" aria-expanded="false" aria-controls="sidebarMaps" className="side-nav-link">
         <i className="-location-point" />
         <span> Maps </span>
@@ -316,8 +286,8 @@ export default function Sidebar() {
           </li>
         </ul>
       </div>
-    </li>
-    <li className="side-nav-item">
+    </li> */}
+    {/* <li className="side-nav-item">
       <a data-bs-toggle="collapse" href="#sidebarMultiLevel" aria-expanded="false" aria-controls="sidebarMultiLevel" className="side-nav-link">
         <i className="-folder-plus" />
         <span> Multi Level </span>
@@ -372,7 +342,7 @@ export default function Sidebar() {
           </li>
         </ul>
       </div>
-    </li>
+    </li> */}
   </ul>
   {/* End Sidebar */}
   <div className="clearfix" />

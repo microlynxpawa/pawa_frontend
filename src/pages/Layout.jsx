@@ -21,7 +21,7 @@ export default function Layout() {
       <Navbar toggleRightbar={toggleRightbar} isRightBar={isRightBar} />
       {isRightBar && <Rightbar />}
       <Sidebar />
-      <main className="row bg-white p-2"><Outlet /></main>
+      {/* <main className="row bg-white p-2"><Outlet /></main> */}
       <Footer/>
     </React.Fragment>
   );
