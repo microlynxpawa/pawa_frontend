@@ -42,27 +42,29 @@ export default class AddGlAccountForm extends Form {
           <br />
           <form>
           <div className="row g-2">
-                {this.renderInput(
-                    "text",
-                    "ourBranchId",
-                    "Enter Branch ID",
-                    "Branch ID",
-                    "mb-3 col-md-6"
-                )}
                 {this.renderSelect(
-                "accountId",
-                this.state.dropdownValues,
-                "Select Account ID",
-                "mb-3 col-md-6"
+                  "ourBranchId",
+                  this.state.dropdownValues,
+                  "Select Branch ID",
+                  "mb-3 col-md-2"
+
+
+                )}
+                {this.renderInput(
+                  "text",
+                  "accountId",
+                  "Enter Account ID",
+                  "Account ID",
+                  "mb-3 col-md-5"
+                )}
+                {this.renderInput(
+                  "text",
+                  "accountName",
+                  "Enter Account Name",
+                  "Account Name",
+                  "mb-3 col-md-5"
                 )}
             </div>
-              {this.renderInput(
-                "text",
-                "accountName",
-                "Enter Account Name",
-                "Account Name",
-                "mb-3"
-              )}
               <div className="row g-2">
                   {this.renderInput(
                     "text",
