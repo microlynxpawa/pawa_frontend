@@ -7,6 +7,7 @@ import AddClient from "./pages/AddClient";
 import AddBusinessClient from "./pages/AddBusinessClient";
 import AddGlAccount from "./pages/AddGlAccount";
 import AddProduct from "./pages/AddProduct";
+import CreateAccount from "./pages/CreateAccount";
 import VerificationCode from "./pages/VerificationCode";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/add-business-client" element={<AddBusinessClient />} />
         <Route path="/add-gl-account" element={<AddGlAccount />} />
         <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/validate" element={<VerificationCode />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />

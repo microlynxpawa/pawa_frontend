@@ -147,3 +147,24 @@ export namespace ProductModel{
     error: Record<string, any>;
   }
 }
+
+export namespace AccountModel {
+  export type TAccount = {
+    ourBranchId: string;
+    accountId: string;
+    accountName: string;
+    clientId: string;
+    productId: string;
+    dateOpened: string;
+    operatingMode: string;
+    authenticationId: string
+  };
+
+  export type AccountFormState = {
+    data: TAccount;
+    loading: boolean;
+    isChecked: boolean;
+    state: string[];
+    error: Record<string, any>;
+  };
+}
