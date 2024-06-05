@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import VerificationCode from "./pages/VerificationCode";
 import CreateCustomer from "./pages/CreateCustomer";
 import CreateClient from "./pages/CreateClient";
+import AllClients from "./pages/AllClients";
 import "./stylesheets/style.css";
 import "react-phone-input-2/lib/style.css";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/validate" element={<VerificationCode />} />
+        <Route path="/all-clients" element={<AllClients />} />
         <Route path="/notfound" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/notfound" />} />
 
