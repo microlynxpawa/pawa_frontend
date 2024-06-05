@@ -6,11 +6,11 @@ export default function Footer() {
       <footer class="footer footerZ">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8 text-center">
               <script>{new Date().getFullYear()}</script>© Hyper -
               Coderthemes.com
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="text-md-end footer-links d-none d-md-block">
                 <a href="javascript: void(0);">About</a>
                 <a href="javascript: void(0);">Support</a>
